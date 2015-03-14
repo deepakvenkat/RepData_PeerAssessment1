@@ -110,7 +110,78 @@ max_interval
 ```
 
 ## Imputing missing values
+Calculating the rows which have missing values for steps.
 
 
+```r
+empty_steps <- activity %>%
+  filter(is.na(steps))
+nrow(empty_steps)
+```
+
+```
+## [1] 2304
+```
+
+To do the imputing, 
+* First separate out the values which are complete.
+* Next calculate the average by interval
+* Join this with the empty steps by interval. 
+* Mutate empty steps to make steps the average steps by interval
+* Remove the average steps column. 
+
+
+```r
+complete_steps <- activity %>%
+  filter(!is.na(steps))
+complete_steps_avg <- complete_steps %>%
+  group_by(interval) %>%
+  summarize(avg_steps = mean(steps))
+empty_steps <- empty_steps %>%
+  inner_join(complete_steps_avg, by = "interval") %>%
+  mutate(steps = avg_steps) %>%
+  select(-avg_steps)
+complete_activity <- bind_rows(complete_steps, empty_steps)
+```
+
+Now calculating the steps by day again in the merged result and drawing the 
+historgram. 
+
+```r
+complete_steps_day <- complete_activity %>%
+  group_by(date) %>%
+  summarize(total_steps = sum(steps))
+hist(complete_steps_day$total_steps, col = 'red', xlab = "Total steps each day", 
+     main = "Imputed Steps per day")
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
+
+```r
+mean(complete_steps_day$total_steps)
+```
+
+```
+## [1] 10766.19
+```
+
+```r
+median(complete_steps_day$total_steps)
+```
+
+```
+## [1] 10766.19
+```
+
+To find the difference in total steps, the difference from the `complete_steps`
+and `complete_activity` are calculated
+
+```r
+sum(complete_activity$steps) - sum(complete_activity$steps)
+```
+
+```
+## [1] 0
+```
 
 ## Are there differences in activity patterns between weekdays and weekends?

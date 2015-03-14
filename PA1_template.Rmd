@@ -33,7 +33,7 @@ steps_by_date <- activity %>%
 The `steps_by_date` variable produced in the previous step is then used to 
 plot a histogram. 
 
-``` {r histogram_steps, fig.height = 50, fig.width = 50}
+``` {r histogram_steps}
 hist(steps_by_date$total_steps, col = 'red', xlab = "Total steps each day", 
      main = "Steps per day")
 ```
@@ -57,7 +57,7 @@ steps_by_interval <- activity %>%
 Plot a time series plot of the 5 minute interval and the average number of steps.
 
 
-```{r interval_steps, fig.height = 50, fig.width = 50}
+```{r interval_steps}
 plot(steps_by_interval$interval, steps_by_interval$avg_steps, type = "l",
      col = "blue", xlab = "Interval", ylab = "Avg Steps", 
      main = "Avg. steps taken per interval")
@@ -104,7 +104,7 @@ Now calculating the steps by day again in the merged result and drawing the
 historgram. 
 ``` {r}
 complete_steps_day <- complete_activity %>%
-  group_by(data) %>%
+  group_by(date) %>%
   summarize(total_steps = sum(steps))
 hist(complete_steps_day$total_steps, col = 'red', xlab = "Total steps each day", 
      main = "Imputed Steps per day")
