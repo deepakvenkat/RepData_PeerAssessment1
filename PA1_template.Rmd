@@ -115,7 +115,7 @@ median(complete_steps_day$total_steps)
 To find the difference in total steps, the difference from the `complete_steps`
 and `complete_activity` are calculated
 ``` {r}
-sum(complete_activity$steps) - sum(complete_activity$steps)
+sum(complete_activity$steps) - sum(complete_steps$steps)
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?

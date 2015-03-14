@@ -177,11 +177,11 @@ To find the difference in total steps, the difference from the `complete_steps`
 and `complete_activity` are calculated
 
 ```r
-sum(complete_activity$steps) - sum(complete_activity$steps)
+sum(complete_activity$steps) - sum(complete_steps$steps)
 ```
 
 ```
-## [1] 0
+## [1] 86129.51
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?

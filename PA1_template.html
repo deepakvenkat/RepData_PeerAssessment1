@@ -140,8 +140,8 @@ hist(complete_steps_day$total_steps, col = 'red', xlab = &quot;Total steps each 
 <pre class="r"><code>median(complete_steps_day$total_steps)</code></pre>
 <pre><code>## [1] 10766.19</code></pre>
 <p>To find the difference in total steps, the difference from the <code>complete_steps</code> and <code>complete_activity</code> are calculated</p>
-<pre class="r"><code>sum(complete_activity$steps) - sum(complete_activity$steps)</code></pre>
-<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>sum(complete_activity$steps) - sum(complete_steps$steps)</code></pre>
+<pre><code>## [1] 86129.51</code></pre>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
