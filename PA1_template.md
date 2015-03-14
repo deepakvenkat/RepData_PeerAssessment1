@@ -50,7 +50,7 @@ hist(steps_by_date$total_steps, col = 'red', xlab = "Total steps each day",
      main = "Steps per day")
 ```
 
-![](PA1_template_files/figure-html/histogram_steps-1.png) 
+![](PA1_template_files/figure-html/histogram_plot1-1.png) 
 
 The mean and median are taken on the total_steps column
 
@@ -91,7 +91,7 @@ plot(steps_by_interval$interval, steps_by_interval$avg_steps, type = "l",
      main = "Avg. steps taken per interval")
 ```
 
-![](PA1_template_files/figure-html/interval_steps-1.png) 
+![](PA1_template_files/figure-html/interval_steps_plot2-1.png) 
 
 Filtering by the interval which would have the maximum number of steps. 
 This is then printed out to give the interval (along with the avg steps.)
@@ -155,7 +155,7 @@ hist(complete_steps_day$total_steps, col = 'red', xlab = "Total steps each day",
      main = "Imputed Steps per day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
+![](PA1_template_files/figure-html/imputed_steps_plot3-1.png) 
 
 ```r
 mean(complete_steps_day$total_steps)
