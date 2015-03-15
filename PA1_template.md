@@ -3,6 +3,7 @@
 
 ## Loading and preprocessing the data
 The `dplyr` package is being used here to process the data better. 
+`lubridate` is for easier date manipulation and `lattice` for the graph. 
 
 ```r
 library(dplyr)
@@ -19,6 +20,11 @@ library(dplyr)
 ## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union
+```
+
+```r
+library(lubridate)
+library(lattice)
 ```
 
 The data is then read from the csv file. 
@@ -173,6 +179,8 @@ median(complete_steps_day$total_steps)
 ## [1] 10766.19
 ```
 
+We see that the mean has remained the same. 
+
 To find the difference in total steps, the difference from the `complete_steps`
 and `complete_activity` are calculated
 
@@ -185,3 +193,29 @@ sum(complete_activity$steps) - sum(complete_steps$steps)
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
+To answer this, first date which was read as factors is converted into character.
+Next a column called weekday is added to denote whether the date is weekday or weekend.
+To do this we use the `wday` function from `lubridate` package. 
+
+```r
+complete_activity$date <- as.character(complete_activity$date)
+complete_activity <- complete_activity %>%
+  mutate(weekday = as.factor(ifelse(wday(date, label = T) %in% c('Sat', 'Sun'), "weekend", "weekday")))
+```
+
+Next we find the avergae steps grouped by interval and weekdays. This is then used
+for an xyplot with the lattice plotting system. 
+
+
+```r
+interval_weekday_average <- complete_activity %>%
+  group_by(interval, weekday) %>%
+  summarize(avg_steps = mean(steps))
+xyplot(avg_steps ~ interval | weekday, data = interval_weekday_average, 
+       layout = c(1, 2), type = "l")
+```
+
+![](PA1_template_files/figure-html/interval_weekday_panels-1.png) 
+
+We see from the graph above that there are spikes in the weekdays for certain
+intervals whereas in the weekends data is more spread out. 
