@@ -215,7 +215,7 @@ xyplot(avg_steps ~ interval | weekday, data = interval_weekday_average,
        layout = c(1, 2), type = "l")
 ```
 
-![](PA1_template_files/figure-html/interval_weekday_panels-1.png) 
+![](PA1_template_files/figure-html/interval_weekday_panels_plot4-1.png) 
 
 We see from the graph above that there are spikes in the weekdays for certain
 intervals whereas in the weekends data is more spread out. 

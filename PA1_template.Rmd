@@ -136,7 +136,7 @@ complete_activity <- complete_activity %>%
 Next we find the avergae steps grouped by interval and weekdays. This is then used
 for an xyplot with the lattice plotting system. 
 
-``` {r interval_weekday_panels}
+``` {r interval_weekday_panels_plot4}
 interval_weekday_average <- complete_activity %>%
   group_by(interval, weekday) %>%
   summarize(avg_steps = mean(steps))
